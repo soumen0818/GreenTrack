@@ -23,7 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Ignore the components folder
-src/components/
+
 
 
