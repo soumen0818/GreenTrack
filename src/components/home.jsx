@@ -89,7 +89,7 @@ const Dashboard = () => {
       console.error('Error:', error);
     }
   };
-
+  { /* Profile Toggle */}
   const ProfileModal = () => (
     <div className="fixed inset-0 bg-white z-50">
       <div className="p-4">
