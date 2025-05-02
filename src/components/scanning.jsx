@@ -3,12 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { Camera, ArrowLeft } from 'lucide-react';
 import Webcam from 'react-webcam';
 
+{/* Scanning Portal */}
+
 const Scanning = () => {
   const navigate = useNavigate();
   const webcamRef = useRef(null);
   const [isScanning, setIsScanning] = useState(false);
   const [scanResult, setScanResult] = useState(null);
 
+  {/* Camera opens up and shows result */}
+  
   const handleScan = async () => {
     setIsScanning(true);
     try {
@@ -16,7 +20,7 @@ const Scanning = () => {
         const mockResult = {
           type: 'Recyclable',
           item: 'Plastic Bottle',
-          confidence: '95%'
+          confidence: '92%'
         };
         setScanResult(mockResult);
         setIsScanning(false);
