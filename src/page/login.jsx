@@ -9,6 +9,7 @@ const GreenTrackLogin = ({ setIsAuthenticated }) => {
   const [fullName, setFullName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [signupSuccess, setSignupSuccess] = useState(false);
   
   // Animation states
   const [leafPositions, setLeafPositions] = useState([
@@ -41,7 +42,6 @@ const GreenTrackLogin = ({ setIsAuthenticated }) => {
     return () => clearInterval(interval);
   }, []);
   
-  // Update the handleLogin function
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -54,16 +54,27 @@ const GreenTrackLogin = ({ setIsAuthenticated }) => {
     }
     
     try {
-      // Here you would normally make an API call to verify credentials
-      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulating API call
+      const response = await fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
       
-      // If login is successful
-      if (typeof setIsAuthenticated === 'function') {
-        setIsAuthenticated(true);
+      if (response.ok) {
+        // Store the JWT token and user data
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        if (typeof setIsAuthenticated === 'function') {
+          setIsAuthenticated(true);
+        }
+        navigate('/welcome', { replace: true });
+      } else {
+        throw new Error(data.message || 'Invalid credentials');
       }
-      
-      // Navigate to the landing/dashboard page
-      navigate('/landingpage', { replace: true });
     } catch (error) {
       console.error('Login failed:', error);
       setFormShake(true);
@@ -72,7 +83,60 @@ const GreenTrackLogin = ({ setIsAuthenticated }) => {
       setIsLoading(false);
     }
   };
-  
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    if (!email || !password || !fullName || !confirmPassword) {
+      setFormShake(true);
+      setTimeout(() => setFormShake(false), 500);
+      setIsLoading(false);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setFormShake(true);
+      setTimeout(() => setFormShake(false), 500);
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:5000/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName,
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Show success message and switch to login
+        setIsLoginView(true);
+        setEmail('');
+        setPassword('');
+        setFullName('');
+        setConfirmPassword('');
+        setSignupSuccess(true); // Show success message
+      } else {
+        throw new Error(data.message || 'Registration failed');
+      }
+    } catch (error) {
+      console.error('Registration failed:', error);
+      setFormShake(true);
+      setTimeout(() => setFormShake(false), 500);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const switchView = () => {
     setIsLoginView(!isLoginView);
     // Reset form fields
@@ -191,6 +255,12 @@ const GreenTrackLogin = ({ setIsAuthenticated }) => {
             </p>
           </div>
           
+          {signupSuccess && isLoginView && (
+            <div className="mb-4 text-green-600 text-center font-medium">
+              Registration successful! Please log in.
+            </div>
+          )}
+          
           <div className="mb-6 fadeSlideIn" style={{ animationDelay: '0.7s' }}>
             <div className="flex border-b border-gray-200">
               <button 
@@ -208,7 +278,7 @@ const GreenTrackLogin = ({ setIsAuthenticated }) => {
             </div>
           </div>
           
-          <form onSubmit={handleLogin} className="fadeSlideIn" style={{ animationDelay: '0.9s' }}>
+          <form onSubmit={isLoginView ? handleLogin : handleSignup} className="fadeSlideIn" style={{ animationDelay: '0.9s' }}>
             <div className="space-y-4">
               {!isLoginView && (
                 <div className="overflow-hidden" style={{ animationDelay: '0.3s' }}>
