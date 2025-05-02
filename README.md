@@ -108,7 +108,7 @@ GreenTrack is a user-friendly web and mobile platform designed to help individua
 
 ## 📺 Demo
 
-Experience GreenTrack in action through our [YouTube Demo Video](#).
+Experience GreenTrack in action through our [YouTube Demo Video](https://www.youtube.com/watch?v=Zuz4qN2UN28).
 
 ---
 
