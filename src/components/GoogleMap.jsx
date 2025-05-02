@@ -11,6 +11,8 @@ const center = {
   lng: -122.4194,
 };
 
+{/*Paste your google MAP API key here in place of GOOGLE_MAPS_API_KEY */}
+
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 function MapComponent() {
