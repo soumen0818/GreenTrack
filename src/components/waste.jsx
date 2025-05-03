@@ -18,6 +18,8 @@ import {
 } from 'lucide-react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 
+{/*Waste Management Tools*/}
+
 const WasteManagementDashboard = () => {
   const [selectedWaste, setSelectedWaste] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -65,6 +67,8 @@ const WasteManagementDashboard = () => {
     height: '400px'
   };
 
+ {/*Example of location*/} 
+  
   const center = {
     lat: 27.7172, // Set this to your city's coordinates
     lng: 85.3240  // These coordinates are for Kathmandu
