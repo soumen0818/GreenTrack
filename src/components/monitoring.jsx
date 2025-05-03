@@ -4,7 +4,6 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { Leaf, Trash2, Wind, Zap, Car, TreePine, Volume2, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-// Sample data - in a real app, this would come from your backend
 const carbonData = [
   { month: 'Jan', emissions: 120, target: 150 },
   { month: 'Feb', emissions: 110, target: 145 },
