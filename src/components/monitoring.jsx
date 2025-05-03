@@ -5,7 +5,7 @@ import { Leaf, Trash2, Wind, Zap, Car, TreePine, Volume2, ArrowLeft } from 'luci
 import { useNavigate } from 'react-router-dom';
 
 {/*Sample Data */}
-
+//to be removed when adding backend
 const carbonData = [
   { month: 'Jan', emissions: 120, target: 150 },
   { month: 'Feb', emissions: 110, target: 145 },
