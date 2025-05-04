@@ -39,7 +39,9 @@ const ProfilePage = () => {
   const handleLogout = () => {
     navigate('/');
   };
-  {/*Dummy User PRofile*/}
+  
+  {/*Dummy User Profile*/}
+  
   const userProfile = {
     name: 'Suman Pradhan',
     email: 'alex@example.com',
@@ -70,6 +72,8 @@ const ProfilePage = () => {
     { id: 'settings', label: 'Settings' }
   ];
 
+ {/*Setting Taab bar*/}
+  
   const handleSettingChange = (setting) => {
     setNotificationSettings(prev => ({
       ...prev,
@@ -206,7 +210,9 @@ const ProfilePage = () => {
       case 'activity':
         return (
           <div className="space-y-6">
+            
             {/* Activity Summary */}
+            
             <div className="bg-white rounded-xl shadow-sm p-6">
               <h3 className="text-xl font-semibold mb-6">Activity Summary</h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
