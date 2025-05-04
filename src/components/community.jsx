@@ -38,6 +38,8 @@ const CommunityEventsPage = () => {
     }
   ];
 
+{/*Events Showcase Lines*/}
+  
   const events = [
     {
       id: 1,
@@ -70,6 +72,8 @@ const CommunityEventsPage = () => {
       organizer: "Green Living Initiative"
     }
   ];
+
+  {/*Stroy Lines*/}
 
   const [stories, setStories] = useState([
     {
