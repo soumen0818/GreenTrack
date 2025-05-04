@@ -37,10 +37,9 @@ const ProfilePage = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const handleLogout = () => {
-    // Add any logout logic here (clear tokens, etc)
     navigate('/');
   };
-
+  {/*Dummy User PRofile*/}
   const userProfile = {
     name: 'Suman Pradhan',
     email: 'alex@example.com',
